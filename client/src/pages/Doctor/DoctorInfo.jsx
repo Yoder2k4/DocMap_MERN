@@ -106,7 +106,7 @@ const DoctorInfo = () => {
 
 	return (
 		<Fragment>
-			<form encType="multipart/form-data">
+			<form encType="multipart/form-data" className="h-[91vh]">
 				<DoctorForm onChange={changeInfoHandler} />
 				<br />
 				<UploadImage imageInfoChange={pfpChangeHandler} />

@@ -108,7 +108,7 @@ const MapBox = () => {
 		};
 	}, [doctorData]);
 
-	return <div id="map" style={{ height: '100vh' }}></div>;
+	return <div id="map" style={{ height: '91vh' }}></div>;
 };
 
 export default MapBox;

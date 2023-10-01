@@ -1,4 +1,4 @@
-import { Fragment, useContext } from 'react';
+import { Fragment, useContext, useState } from 'react';
 import {
 	Link,
 	Outlet,
@@ -10,12 +10,21 @@ import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import logo from '../../img/logo.png';
 import AuthContext from '../../utils/auth-context';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const navigation = [
-	{ name: 'Authenticate', href: '/', current: true },
-	{ name: 'About', href: '/', current: false },
-	{ name: 'Contact', href: '/', current: false },
-	{ name: 'Feedback', href: '/', current: false },
+	{
+		name: 'Doctor',
+		href: '/doctor/login',
+		icon: 'fa-solid fa-stethoscope',
+		current: false,
+	},
+	{
+		name: 'Patient',
+		href: '/patient/login',
+		icon: 'fa-solid fa-user',
+		current: false,
+	},
 ];
 
 function classNames(...classes) {
@@ -27,13 +36,43 @@ export default function Navbar(props) {
 	const ctx = useContext(AuthContext);
 	const { userID } = useParams();
 	const routeLocation = useLocation();
+	const [current, setCurrent] = useState({ Doctor: false, Patient: false });
+
+	const changeCurrentHandler = (item) => {
+		setCurrent((prevData) => {
+			const newData = prevData;
+			for (const key in newData) {
+				if (Object.hasOwnProperty.call(newData, key)) {
+					if (key === item) {
+						newData[key] = true;
+					} else {
+						newData[key] = false;
+					}
+				}
+			}
+			return newData;
+		});
+	};
+
+	const toHomePage = () => {
+		setCurrent((prevData) => {
+			const newData = prevData;
+			for (const key in newData) {
+				if (Object.hasOwnProperty.call(newData, key)) {
+					newData[key] = false;
+				}
+			}
+			return newData;
+		});
+		navigate(`/`);
+	};
 
 	let styleClass;
 	if (userID && routeLocation.pathname === `/patient/${userID}`) {
 		styleClass =
-			'fixed top-0 w-full z-10 bg-black bg-opacity-5 backdrop-filter backdrop-blur-sm';
+			'absolute top-0 w-full z-10 bg-black bg-opacity-5 backdrop-filter backdrop-blur-sm h-[9vh]';
 	} else {
-		styleClass = 'bg-gray-800 fixed top-0 left-0 right-0';
+		styleClass = 'absolute bg-gray-800 top-0 left-0 right-0 h-[9vh]';
 	}
 
 	const logoutBtnhandler = () => {
@@ -127,8 +166,10 @@ export default function Navbar(props) {
 				{({ open }) => (
 					<>
 						<div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+							{/* div 1 */}
 							<div className="relative flex h-16 items-center justify-between">
-								<div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+								{/* div 2 */}
+								<div className="inset-y-0 left-0 flex items-center sm:hidden">
 									{/* Mobile menu button*/}
 									<Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
 										<span className="absolute -inset-0.5" />
@@ -140,35 +181,47 @@ export default function Navbar(props) {
 										)}
 									</Disclosure.Button>
 								</div>
-								<div className="flex flex-1 items-center sm:items-stretch ">
-									<div className="flex flex-shrink-0 items-center justify-start cursor-default">
-										<img className="h-8 w-auto" src={logo} alt="DocMap Logo" />
-										<span className="self-center ml-2 text-2xl font-semibold whitespace-nowrap text-white">
-											DocMap
-										</span>
-									</div>
-									<div className="hidden sm:block mx-auto">
-										<div className="flex space-x-4">
-											{navigation.map((item) => (
-												<Link
-													key={item.name}
-													to={item.href}
-													className={classNames(
-														item.current
-															? 'bg-gray-900 text-white'
-															: 'text-gray-300 hover:bg-gray-700 hover:text-white',
-														'rounded-md px-3 py-2 text-sm font-medium',
-													)}
-													aria-current={item.current ? 'page' : undefined}
-												>
-													{item.name}
-												</Link>
-											))}
-										</div>
+
+								<div className="hidden justify-start sm:block bg-gray-700 rounded-md">
+									<div className="flex">
+										{navigation.map((item) => (
+											<Link
+												key={item.name}
+												to={item.href}
+												onClick={() => changeCurrentHandler(item.name)}
+												className={classNames(
+													current[item.name]
+														? 'bg-gray-900 text-white'
+														: 'text-gray-300 hover:bg-gray-900 hover:text-white',
+													'rounded-md px-3 py-2 text-sm font-medium flex justify-between',
+												)}
+												aria-current={current[item.name] ? 'page' : undefined}
+											>
+												<FontAwesomeIcon
+													icon={item.icon}
+													size="xl"
+													style={{ color: '#ffffff' }}
+												/>
+												<span className="px-1">{item.name}</span>
+											</Link>
+										))}
 									</div>
 								</div>
-								<div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+
+								<div className="flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
 									<LoginConfigure isLogin={ctx.isLoggedIn} />
+								</div>
+								<div
+									className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-shrink-0 items-center cursor-pointer"
+									onClick={toHomePage}
+								>
+									<span className="self-center text-3xl px-2 font-semibold whitespace-nowrap text-white">
+										Doc
+									</span>
+									<img className="h-16 w-auto" src={logo} alt="DocMap Logo" />
+									<span className="self-center text-3xl px-2 font-semibold whitespace-nowrap text-white">
+										Map
+									</span>
 								</div>
 							</div>
 						</div>

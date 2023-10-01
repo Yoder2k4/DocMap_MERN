@@ -44,7 +44,7 @@ const DoctorPage = () => {
 		<Fragment>
 			{doctorList.length === 0 && <p>No doctor found</p>}
 			{doctorList.map((doc) => (
-				<div key={doc._id}>
+				<div key={doc._id} className="h-[91vh]">
 					<span>{doc.name} : </span>
 					<span>{doc.specialisation} : </span>
 					<span> ${doc.fees} : </span>

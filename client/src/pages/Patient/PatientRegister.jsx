@@ -46,7 +46,7 @@ const PatientRegister = (props) => {
 
 	return (
 		<Fragment>
-			<form onSubmit={handleSubmit}>
+			<form onSubmit={handleSubmit} className="h-[91vh]">
 				<input
 					type="email"
 					name="email"

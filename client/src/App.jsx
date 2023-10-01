@@ -15,6 +15,10 @@ import PatientLogin from './pages/Patient/PatientLogin';
 import PatientHome from './pages/Patient/PatientHome';
 import DoctorInfo from './pages/Doctor/DoctorInfo';
 import DoctorPage from './pages/Doctor/DoctorPage';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import Empty from './components/navbar/Empty';
+library.add(fas);
 
 function App() {
 	const [isLoggedIn, setIsLoggedIn] = useState('');
@@ -44,7 +48,12 @@ function App() {
 		createRoutesFromElements(
 			<Route
 				path="/"
-				element={<Navbar isLogin={isLoggedIn} onLogout={logoutHandler} />}
+				element={
+					<div className="h-screen flex flex-col">
+						<Empty />
+						<Navbar isLogin={isLoggedIn} onLogout={logoutHandler} />
+					</div>
+				}
 			>
 				<Route index Component={HomePage} />
 				<Route path="doctor">
