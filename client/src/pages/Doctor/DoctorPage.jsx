@@ -1,6 +1,8 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { useCallback } from 'react';
 import { useParams } from 'react-router-dom';
+import Sidenav from '../../components/doctor/HomePage/Sidenav';
+import Content from '../../components/doctor/HomePage/Content';
 
 const API_BASE = 'http://localhost:3001';
 
@@ -27,7 +29,6 @@ const DoctorPage = () => {
 	useEffect(() => {
 		fetchDoctors();
 	}, [fetchDoctors]);
-	console.log('doctorList', doctorList);
 
 	useEffect(() => {
 		if (doctorList.length > 0) {
@@ -42,14 +43,12 @@ const DoctorPage = () => {
 
 	return (
 		<Fragment>
-			{doctorList.length === 0 && <p>No doctor found</p>}
-			{doctorList.map((doc) => (
-				<div key={doc._id} className="h-[91vh]">
-					<span>{doc.name} : </span>
-					<span>{doc.specialisation} : </span>
-					<span> ${doc.fees} : </span>
+			<div className="h-full w-full flex">
+				<Sidenav />
+				<div className="h-full w-full">
+					<Content />
 				</div>
-			))}
+			</div>
 		</Fragment>
 	);
 };

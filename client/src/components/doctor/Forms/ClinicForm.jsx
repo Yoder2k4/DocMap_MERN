@@ -64,6 +64,7 @@ const ClinicForm = ({ clinic, clinicIndex, onChange }) => {
 				placeholder="Place Name"
 				onChange={placeInputChangeHandler}
 				value={clinicElement.place}
+				className='text-black'
 			/>
 			<AddressAutocomplete
 				key={clinicIndex}

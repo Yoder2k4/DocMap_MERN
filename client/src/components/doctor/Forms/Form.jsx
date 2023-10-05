@@ -30,6 +30,7 @@ const DoctorForm = ({ onChange }) => {
 				name="name"
 				onChange={infoChangeHandler}
 				value={info.name}
+				className="text-black"
 			/>
 			<label htmlFor="name">Name</label>
 			<br />
@@ -39,6 +40,7 @@ const DoctorForm = ({ onChange }) => {
 				id="contact"
 				onChange={infoChangeHandler}
 				value={info.contact}
+				className="text-black"
 			/>
 			<label htmlFor="contact">Contact No.</label>
 			<br />
@@ -48,6 +50,7 @@ const DoctorForm = ({ onChange }) => {
 				id="contactMail"
 				onChange={infoChangeHandler}
 				value={info.contactMail}
+				className="text-black"
 			/>
 			<label htmlFor="contactMail">Contact Email</label>
 			<br />
@@ -57,6 +60,7 @@ const DoctorForm = ({ onChange }) => {
 				id="experience"
 				onChange={infoChangeHandler}
 				value={info.experience}
+				className="text-black"
 			/>
 			<label htmlFor="experience">Years of Experience</label>
 			<br />
@@ -66,6 +70,7 @@ const DoctorForm = ({ onChange }) => {
 				name="specialisation"
 				onChange={infoChangeHandler}
 				value={info.specialisation}
+				className="text-black"
 			/>
 			<label htmlFor="specialisation">Specialisation</label>
 			<br />
@@ -75,6 +80,7 @@ const DoctorForm = ({ onChange }) => {
 				id="fees"
 				onChange={infoChangeHandler}
 				value={info.fees}
+				className="text-black"
 			/>
 			<label htmlFor="fees">Fees</label>
 		</Fragment>

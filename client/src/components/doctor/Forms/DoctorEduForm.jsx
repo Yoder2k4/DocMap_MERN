@@ -31,6 +31,7 @@ const DoctorEduForm = ({ onChange }) => {
 						name="degree"
 						onChange={(event) => handleInputChange(index, event)}
 						value={field.degree}
+						className='text-black'
 					/>
 					<label htmlFor="institution">Institution</label>
 					<input
@@ -39,6 +40,7 @@ const DoctorEduForm = ({ onChange }) => {
 						name="institution"
 						onChange={(event) => handleInputChange(index, event)}
 						value={field.institution}
+						className='text-black'
 					/>
 				</div>
 			))}

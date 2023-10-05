@@ -15,13 +15,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const navigation = [
 	{
 		name: 'Doctor',
-		href: '/doctor/login',
+		href: '/doctor/register',
 		icon: 'fa-solid fa-stethoscope',
 		current: false,
 	},
 	{
 		name: 'Patient',
-		href: '/patient/login',
+		href: '/patient/register',
 		icon: 'fa-solid fa-user',
 		current: false,
 	},
@@ -70,9 +70,9 @@ export default function Navbar(props) {
 	let styleClass;
 	if (userID && routeLocation.pathname === `/patient/${userID}`) {
 		styleClass =
-			'absolute top-0 w-full z-10 bg-black bg-opacity-5 backdrop-filter backdrop-blur-sm h-[9vh]';
+			'w-full z-10 bg-gray-950 backdrop-filter backdrop-blur-sm';
 	} else {
-		styleClass = 'absolute bg-gray-800 top-0 left-0 right-0 h-[9vh]';
+		styleClass = 'bg-gray-800 top-0 left-0 right-0';
 	}
 
 	const logoutBtnhandler = () => {
@@ -182,8 +182,9 @@ export default function Navbar(props) {
 									</Disclosure.Button>
 								</div>
 
-								<div className="hidden justify-start sm:block bg-gray-700 rounded-md">
-									<div className="flex">
+								<div className="flex items-center justify-start">
+									<span className="pr-4 font-medium">Register</span>
+									<div className="flex bg-gray-700 rounded-md">
 										{navigation.map((item) => (
 											<Link
 												key={item.name}
@@ -249,7 +250,7 @@ export default function Navbar(props) {
 					</>
 				)}
 			</Disclosure>
-			<main>
+			<main className="flex-grow">
 				<Outlet />
 			</main>
 		</Fragment>

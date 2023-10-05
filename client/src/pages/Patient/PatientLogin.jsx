@@ -53,6 +53,7 @@ const PatientLogin = (props) => {
 					id="email"
 					onChange={handleChange}
 					value={data.email}
+					className="text-black"
 				/>
 				<label htmlFor="email">Email</label>
 				<br />
@@ -63,6 +64,7 @@ const PatientLogin = (props) => {
 					id="password"
 					onChange={handleChange}
 					value={data.password}
+					className="text-black"
 				/>
 				<label htmlFor="password">Password</label>
 				<br />
