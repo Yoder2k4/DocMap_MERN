@@ -1,5 +1,4 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Badge from './Badge';
 
 const DetailPfp = () => {
@@ -104,18 +103,6 @@ const DetailPfp = () => {
 								</svg>
 							</svg>
 						</button>
-					</span>
-					<span className="pr-2 flex flex-col flex-grow text-sm text-gray-300">
-						<span className="flex items-center h-1/3">
-							<span className="">
-								<FontAwesomeIcon icon="fa-solid fa-phone" />
-							</span>
-							<span className="pl-2 underline">9831842474</span>
-						</span>
-						<span className="flex items-center h-1/3">
-							<FontAwesomeIcon icon="fa-solid fa-envelope" />
-							<span className="pl-2 underline">Email</span>
-						</span>
 					</span>
 				</span>
 			</div>

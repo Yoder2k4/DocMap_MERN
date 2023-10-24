@@ -5,10 +5,10 @@ const Sidenav = () => {
 		<>
 			<aside
 				id="default-sidebar"
-				className="z-40 px-10 py-5 h-full transition-transform -translate-x-full sm:translate-x-0"
+				className="z-40 px-6 py-5 h-full transition-transform -translate-x-full sm:translate-x-0"
 				aria-label="Sidebar"
 			>
-				<div className="h-full px-5 py-4 bg-gray-800 rounded-xl">
+				<div className="h-full px-8 py-4 bg-gray-800 rounded-xl">
 					<ul className="space-y-2 font-medium">
 						<li>
 							<span className="flex items-center p-2 rounded-lg text-white hover:bg-gray-950 group">

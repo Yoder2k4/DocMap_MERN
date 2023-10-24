@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import ToggleDays from '../WeekdayPicker';
-import TimePicker from '../TimePicker';
+import ToggleDays from './WeekdayPicker';
+import TimePicker from './TimePicker';
 
 const TimingForm = ({ timingIndex, onChange }) => {
 	const [timing, setTiming] = useState({

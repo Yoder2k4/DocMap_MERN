@@ -45,7 +45,7 @@ const DoctorPage = () => {
 		<Fragment>
 			<div className="h-full w-full flex">
 				<Sidenav />
-				<div className="h-full w-full">
+				<div className="h-full flex-grow">
 					<Content />
 				</div>
 			</div>

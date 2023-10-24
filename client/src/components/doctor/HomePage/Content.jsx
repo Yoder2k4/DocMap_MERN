@@ -1,15 +1,16 @@
 import React from 'react';
-import DetailPfp from './Profile/Content/DetailPfp';
-import Ratings from './Profile/Content/Ratings';
+import Profile from './Profile/Profile';
+import SideProfile from './SideProfile/SideProfile';
 
 const Content = () => {
 	return (
 		<div className="flex flex-grow h-full">
-			<div id="main" className="w-8/12 flex flex-col items-center">
-				<DetailPfp />
-				<Ratings />
+			<div className="w-8/12 flex flex-col items-center">
+				<Profile />
 			</div>
-			<div id="routes" className="flex-grow bg-gray-600"></div>
+			<div className="flex-grow flex justify-center items-center px-3 py-5">
+				<SideProfile />
+			</div>
 		</div>
 	);
 };

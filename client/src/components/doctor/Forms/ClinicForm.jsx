@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import AddressAutocomplete from '../AutocompleteAddress';
+import AddressAutocomplete from './AutocompleteAddress';
 import TimingForm from './TimingForm';
 
 const ClinicForm = ({ clinic, clinicIndex, onChange }) => {
