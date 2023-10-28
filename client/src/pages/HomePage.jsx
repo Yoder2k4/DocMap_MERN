@@ -34,7 +34,7 @@ const HomePage = () => {
 				<div className="flex justify-evenly">
 					<button
 						type="button"
-						class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-8 py-2.5 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+						className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-8 py-2.5 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
 					>
 						Get Started
 					</button>
@@ -66,8 +66,8 @@ const HomePage = () => {
 						<FontAwesomeIcon className="ml-1" icon="fa-solid fa-arrow-right" />
 					</span>
 					<Link to="/patient/login" className="absolute top-40 -left-10">
-						<button class="inline-flex items-center justify-center overflow-hidden font-medium text-gray-900 from-cyan-500 group-hover:to-blue-500 focus:ring-4 focus:outline-none focus:ring-cyan-800">
-							<span class="relative px-7 py-2.5 transition-all ease-in duration-75 bg-blue-500 rounded-xl hover:bg-gray-800 text-white text-lg">
+						<button className="inline-flex items-center justify-center overflow-hidden font-medium text-gray-900 from-cyan-500 group-hover:to-blue-500 focus:ring-4 focus:outline-none focus:ring-cyan-800">
+							<span className="relative px-7 py-2.5 transition-all ease-in duration-75 bg-blue-500 rounded-xl hover:bg-gray-800 text-white text-lg">
 								Login
 							</span>
 						</button>
@@ -86,8 +86,8 @@ const HomePage = () => {
 						<FontAwesomeIcon icon="fa-solid fa-user" />
 					</span>
 					<Link to="/doctor/login" className="absolute top-40 -left-10">
-						<button class="inline-flex items-center justify-center overflow-hidden font-medium text-gray-900 from-cyan-500 group-hover:to-blue-500 focus:ring-4 focus:outline-none focus:ring-cyan-800">
-							<span class="relative px-7 py-2.5 transition-all ease-in duration-75 bg-blue-500 rounded-xl hover:bg-gray-800 text-white text-lg">
+						<button className="inline-flex items-center justify-center overflow-hidden font-medium text-gray-900 from-cyan-500 group-hover:to-blue-500 focus:ring-4 focus:outline-none focus:ring-cyan-800">
+							<span className="relative px-7 py-2.5 transition-all ease-in duration-75 bg-blue-500 rounded-xl hover:bg-gray-800 text-white text-lg">
 								Login
 							</span>
 						</button>

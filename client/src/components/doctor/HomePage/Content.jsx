@@ -1,12 +1,18 @@
 import React from 'react';
 import Profile from './Profile/Profile';
 import SideProfile from './SideProfile/SideProfile';
+import Reviews from './Reviews/Reviews';
+import Appointments from './Appointments/Appointments';
+import EditProfile from './EditProfile/EditProfile';
+import History from './History/History';
 
-const Content = () => {
+const sections = [<Profile />, <Reviews />, <Appointments />, <EditProfile />, <History />];
+
+const Content = ({ section }) => {
 	return (
 		<div className="flex flex-grow h-full">
 			<div className="w-8/12 flex flex-col items-center">
-				<Profile />
+				{sections[section]}
 			</div>
 			<div className="flex-grow flex justify-center items-center px-3 py-5">
 				<SideProfile />

@@ -10,6 +10,7 @@ const DoctorPage = () => {
 	const { userID } = useParams();
 	const [doctorList, setDoctorList] = useState([]);
 	const [doctorData, setDoctorData] = useState({});
+	const [section, setSection] = useState(0);
 
 	const fetchDoctors = useCallback(async () => {
 		try {
@@ -39,14 +40,16 @@ const DoctorPage = () => {
 		}
 	}, [doctorList, userID]);
 
-	console.log('doctorData', doctorData);
+	const sectionChangeHandler = useCallback((section) => {
+		setSection(section);
+	}, []);
 
 	return (
 		<Fragment>
 			<div className="h-full w-full flex">
-				<Sidenav />
+				<Sidenav changeSection={sectionChangeHandler} />
 				<div className="h-full flex-grow">
-					<Content />
+					<Content section={section} />
 				</div>
 			</div>
 		</Fragment>

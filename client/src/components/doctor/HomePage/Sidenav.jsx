@@ -1,16 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-const Sidenav = () => {
+const Sidenav = ({ changeSection }) => {
+	const [section, setSection] = useState(0);
+
+	useEffect(() => {
+		changeSection(section);
+	}, [section, changeSection]);
+
 	return (
 		<>
 			<aside
 				id="default-sidebar"
-				className="z-40 px-6 py-5 h-full transition-transform -translate-x-full sm:translate-x-0"
+				className="z-40 px-6 py-6 h-full transition-transform -translate-x-full sm:translate-x-0"
 				aria-label="Sidebar"
 			>
 				<div className="h-full px-8 py-4 bg-gray-800 rounded-xl">
 					<ul className="space-y-2 font-medium">
-						<li>
+						<li onClick={() => setSection(0)} className="cursor-pointer">
 							<span className="flex items-center p-2 rounded-lg text-white hover:bg-gray-950 group">
 								<svg
 									className="w-5 h-5 transition duration-75 text-gray-400 group-hover:text-gray-300"
@@ -22,7 +28,7 @@ const Sidenav = () => {
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
 										className="w-5 h-5 transition duration-75 text-gray-400 group-hover:text-gray-300"
-										enable-background="new 0 0 32 32"
+										enableBackground="new 0 0 32 32"
 										viewBox="0 0 32 32"
 										id="profile"
 									>
@@ -38,7 +44,7 @@ const Sidenav = () => {
 								<span className="ml-3">Profile</span>
 							</span>
 						</li>
-						<li>
+						<li onClick={() => setSection(1)} className="cursor-pointer">
 							<span className="flex items-center p-2 rounded-lg text-white hover:bg-gray-900 group">
 								<svg
 									className="flex-shrink-0 w-5 h-5 transition duration-75 text-gray-400 group-hover:text-gray-300"
@@ -81,7 +87,7 @@ const Sidenav = () => {
 								</span>
 							</span>
 						</li>
-						<li>
+						<li onClick={() => setSection(2)} className="cursor-pointer">
 							<span className="flex items-center p-2 rounded-lg text-white hover:bg-gray-900 group">
 								<svg
 									className="flex-shrink-0 w-5 h-5 transition duration-75 text-gray-400 group-hover:text-gray-300"
@@ -106,7 +112,7 @@ const Sidenav = () => {
 								</span>
 							</span>
 						</li>
-						<li>
+						<li onClick={() => setSection(3)} className="cursor-pointer">
 							<span className="flex items-center p-2 rounded-lg text-white hover:bg-gray-950 group">
 								<svg
 									className="w-5 h-5 transition duration-75 text-gray-400 group-hover:text-gray-300"
@@ -117,7 +123,7 @@ const Sidenav = () => {
 								>
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
-										enable-background="new 0 0 32 32"
+										enableBackground="new 0 0 32 32"
 										viewBox="0 0 32 32"
 										id="edit"
 									>
@@ -128,7 +134,7 @@ const Sidenav = () => {
 								<span className="ml-3">Edit Profile</span>
 							</span>
 						</li>
-						<li>
+						<li onClick={() => setSection(4)} className="cursor-pointer">
 							<span className="flex items-center p-2 rounded-lg text-white hover:bg-gray-950 group">
 								<svg
 									className="w-5 h-5 transition duration-75 text-gray-400 group-hover:text-gray-300"
@@ -148,7 +154,7 @@ const Sidenav = () => {
 								<span className="ml-3">History</span>
 							</span>
 						</li>
-						<li>
+						<li onClick={() => setSection(5)} className="cursor-pointer">
 							<span className="flex items-center p-2 rounded-lg text-white hover:bg-gray-950 group">
 								<svg
 									className="w-5 h-5 transition duration-75 text-gray-400 group-hover:text-gray-300"

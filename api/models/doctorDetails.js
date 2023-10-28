@@ -36,7 +36,7 @@ const doctorDetailSchema = new Schema({
 			},
 		},
 		bgInfo: {
-			url: {                                               
+			url: {
 				type: String,
 			},
 			filename: {
