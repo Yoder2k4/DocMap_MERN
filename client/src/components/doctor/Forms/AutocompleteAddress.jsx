@@ -5,7 +5,7 @@ import axios from 'axios';
 
 const API_KEY = 'fb1725b059fd44308deefe5ba3854e50';
 
-const AddressAutocomplete = ({ indice, inputHandle }) => {
+const AddressAutocomplete = ({ inputHandle }) => {
 	const [inputValue, setInputValue] = useState('');
 	const [suggestions, setSuggestions] = useState([]);
 
@@ -26,26 +26,42 @@ const AddressAutocomplete = ({ indice, inputHandle }) => {
 	};
 
 	const optionSelectedHandler = (newValue) => {
-		inputHandle(newValue, indice);
+		inputHandle(newValue);
 	};
 
 	return (
-		<span
-			id={`address-autocomplete[${indice}]`}
-			style={{ paddingRight: '10px' }}
-		>
+		<span>
 			<Autocomplete
 				options={suggestions}
 				getOptionLabel={(option) => option.properties.formatted}
 				inputValue={inputValue}
 				onInputChange={(event, newValue) => handleInputChange(newValue)}
-				onChange={(newValue, data) => {
-					optionSelectedHandler(data);
-				}}
+				onChange={(newValue, data) => optionSelectedHandler(data)}
 				renderInput={(params) => (
-					<TextField {...params} label="Enter an address" />
+					<TextField
+						{...params}
+						label="Enter an address"
+						sx={{
+							'& .MuiInputBase-input': {
+								color: 'white', // Change text color
+							},
+							'& .MuiOutlinedInput-notchedOutline': {
+								borderColor: '#4b5563', // Change border color
+								borderRadius: '10px', // Change border radius
+							},
+							'&:hover .MuiOutlinedInput-notchedOutline': {
+								borderColor: '#9ca3af', // Change border color on hover
+							},
+						}}
+					/>
 				)}
-				sx={{ width: '25rem', display: 'inline-flex' }}
+				sx={{
+					width: '20rem',
+					display: 'inline-flex',
+					backgroundColor: '#374151',
+					borderColor: '#4b5563', // Change border color
+					borderRadius: '10px', // Change border radius
+				}}
 			/>
 		</span>
 	);

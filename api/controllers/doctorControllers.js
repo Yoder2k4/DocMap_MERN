@@ -24,16 +24,26 @@ module.exports.loginFailRoute = (req, res) => {
 };
 
 module.exports.registerDoctorInfo = async (req, res) => {
-	const { doctor, education, clinics, images } = req.body;
+	const doctor = req.body;
 	const { id } = req.params;
 	doctor.doctorID = id;
-	doctor.education = education;
-	doctor.clinics = clinics;
-	doctor.images = images;
 	const newDoctor = new DoctorDetails(doctor);
 	await newDoctor.save();
 	const DoctorAcc = await DoctorUser.findById(id);
 	DoctorAcc.accID = newDoctor._id;
 	await DoctorAcc.save();
-	res.json({ newDoctor, DoctorAcc });
+	res.json(newDoctor);
+};
+
+module.exports.getDoctorInfo = async (req, res) => {
+	const { id } = req.params;
+	const doctor = await DoctorDetails.findById(id);
+	res.json(doctor);
+};
+
+module.exports.editDoctorProfile = async (req, res) => {
+	const { id } = req.params;
+	const doctor = req.body;
+	const response = await DoctorDetails.findByIdAndUpdate(id, { ...doctor }, { new: true });
+	res.json(response);
 };

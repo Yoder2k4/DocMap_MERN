@@ -2,11 +2,8 @@ import React, { useState, useCallback, useEffect } from 'react';
 import ToggleDays from './WeekdayPicker';
 import TimePicker from './TimePicker';
 
-const TimingForm = ({ timingIndex, onChange }) => {
-	const [timing, setTiming] = useState({
-		days: '',
-		time: { open: '', close: '' },
-	});
+const TimingForm = ({ initialValue, timingIndex, clinicIndex, onChange }) => {
+	const [timing, setTiming] = useState(initialValue);
 
 	const daySelectHandler = useCallback((daysArray) => {
 		setTiming((prevTiming) => {
@@ -18,30 +15,36 @@ const TimingForm = ({ timingIndex, onChange }) => {
 	const openTimeSelectHandler = useCallback((openTime) => {
 		setTiming((prevTiming) => {
 			const updatedTiming = prevTiming;
-			updatedTiming['time']['open'] = JSON.stringify(openTime);
+			const openTimeStr = JSON.stringify(openTime).slice(1, -1);
+			updatedTiming['time']['open'] = openTimeStr;
 			return updatedTiming;
 		});
 	}, []);
 	const closeTimeSelectHandler = useCallback((closeTime) => {
 		setTiming((prevTiming) => {
 			const updatedTiming = prevTiming;
-			updatedTiming['time']['close'] = JSON.stringify(closeTime);
+			const closeTimeStr = JSON.stringify(closeTime).slice(1, -1);
+			updatedTiming['time']['close'] = closeTimeStr;
 			return updatedTiming;
 		});
 	}, []);
 
 	useEffect(() => {
-		onChange(timing);
-	}, [onChange, timing]);
+		onChange(timing, timingIndex, clinicIndex);
+	}, [onChange, timing, timingIndex, clinicIndex]);
 
 	return (
-		<div key={timingIndex} style={{ width: '100%' }}>
-			<ToggleDays onSelect={daySelectHandler} />
+		<div
+			key={timingIndex}
+			className="w-full flex justify-around items-center my-1"
+		>
+			<ToggleDays onSelect={daySelectHandler} daysArray={timing.days} />
 			<TimePicker
+				openInitial={timing.time.open}
+				closeInitial={timing.time.close}
 				onOpenSelect={openTimeSelectHandler}
 				onCloseSelect={closeTimeSelectHandler}
 			/>
-			<br />
 		</div>
 	);
 };

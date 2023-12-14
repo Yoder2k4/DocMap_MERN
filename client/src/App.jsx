@@ -17,6 +17,7 @@ import DoctorInfo from './pages/Doctor/DoctorInfo';
 import DoctorPage from './pages/Doctor/DoctorPage';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
+import DoctorDetailRegister from './pages/Doctor/DoctorDetailRegister';
 library.add(fas);
 
 function App() {
@@ -41,6 +42,8 @@ function App() {
 	const logoutHandler = () => {
 		setIsLoggedIn('');
 		localStorage.removeItem('isLoggedIn');
+		localStorage.removeItem('accID');
+		localStorage.removeItem('userID');
 	};
 
 	const router = createBrowserRouter(
@@ -54,7 +57,7 @@ function App() {
 					<Route exact path=":userID" element={<DoctorPage />} />
 					<Route exact path="register">
 						<Route index element={<DoctorRegister onLogin={loginHandler} />} />
-						<Route exact path=":userID" element={<DoctorInfo />} />
+						<Route exact path=":userID" element={<DoctorDetailRegister />} />
 					</Route>
 					<Route
 						exact

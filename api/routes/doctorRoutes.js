@@ -11,6 +11,8 @@ const {
 	loginDoctor,
 	loginFailRoute,
 	registerDoctorInfo,
+	getDoctorInfo,
+	editDoctorProfile,
 } = require('../controllers/doctorControllers');
 const multer = require('multer');
 const { storage } = require('../cloudinary');
@@ -39,6 +41,10 @@ router.route('/uploadImg').post(upload.single('pfp'), async (req, res) => {
 	res.json({ url: imageInfo.path, filename: imageInfo.filename });
 });
 
-router.route('/:id').post(registerDoctorInfo);
+router
+	.route('/:id')
+	.post(registerDoctorInfo)
+	.get(getDoctorInfo)
+	.put(editDoctorProfile);
 
 module.exports = router;

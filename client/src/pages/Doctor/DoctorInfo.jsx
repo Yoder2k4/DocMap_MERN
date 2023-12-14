@@ -4,6 +4,7 @@ import DoctorForm from '../../components/doctor/Forms/Form';
 import DoctorEduForm from '../../components/doctor/Forms/DoctorEduForm';
 import ClinicForm from '../../components/doctor/Forms/ClinicForm';
 import UploadImage from '../../components/doctor/Forms/UploadImage';
+import Qualifications from '../../components/doctor/HomePage/EditProfile/Qualifications';
 
 const API_BASE = 'http://localhost:3001';
 
@@ -47,7 +48,6 @@ const DoctorInfo = () => {
 			{ location: '', timings: [{ days: '', time: { open: '', close: '' } }] },
 		]);
 	};
-
 	const editClinicHandler = useCallback((editedClinic, clinicIndex) => {
 		setClinics((prevData) => {
 			const updatedClinics = [...prevData];
@@ -55,7 +55,6 @@ const DoctorInfo = () => {
 			return updatedClinics;
 		});
 	}, []);
-
 	const pfpChangeHandler = useCallback((imgObj) => {
 		setImages((prevData) => {
 			const updatedImagesInfo = prevData;
@@ -93,8 +92,7 @@ const DoctorInfo = () => {
 			if (response.ok) {
 				console.log('Data sent successfully');
 				const data = await response.json();
-				console.log('toSend:', toSend);
-				console.log(data);
+				localStorage.setItem('accID', data._id);
 				navigate(`/doctor/${userID}`);
 			} else {
 				console.log('Error submitting data');
@@ -109,12 +107,13 @@ const DoctorInfo = () => {
 			<form encType="multipart/form-data" className="h-[91vh]">
 				<DoctorForm onChange={changeInfoHandler} />
 				<br />
-				<UploadImage imageInfoChange={pfpChangeHandler} />
+				<UploadImage imgType='pfpURL' imageInfoChange={pfpChangeHandler} />
 				<br />
-				<UploadImage imageInfoChange={bgChangeHandler} />
+				<UploadImage imgType='bgURL' imageInfoChange={bgChangeHandler} />
 				<br />
-				<DoctorEduForm onChange={changeEduInfoHandler} />
-				<br />
+				{/* <DoctorEduForm onChange={changeEduInfoHandler} /> */}
+				<Qualifications qualifications={education} onChange={changeEduInfoHandler}/>
+				{/* <br />
 				<div id="addLocation">
 					{clinics.map((clinic, clinicIndex) => (
 						<ClinicForm
@@ -127,7 +126,7 @@ const DoctorInfo = () => {
 						/>
 					))}
 					<button onClick={addLocationBtnHandler}>Add Location</button>
-				</div>
+				</div> */}
 				<button onClick={submitFormHandler}>Submit</button>
 			</form>
 		</Fragment>

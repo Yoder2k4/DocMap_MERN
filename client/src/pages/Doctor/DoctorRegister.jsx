@@ -27,7 +27,7 @@ const DoctorRegister = (props) => {
 				const userID = user._id;
 				props.onLogin('doctor');
 				navigate(`/doctor/register/${userID}`);
-				console.log('Data submitted successfully');
+				localStorage.setItem('userID', userID);
 			} else {
 				console.error('Error submitting data');
 			}

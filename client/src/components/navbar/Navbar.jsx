@@ -69,8 +69,7 @@ export default function Navbar(props) {
 
 	let styleClass;
 	if (userID && routeLocation.pathname === `/patient/${userID}`) {
-		styleClass =
-			'w-full z-10 bg-gray-950 backdrop-filter backdrop-blur-sm';
+		styleClass = 'w-full z-10 bg-gray-950 backdrop-filter backdrop-blur-sm';
 	} else {
 		styleClass = 'bg-gray-800 top-0 left-0 right-0';
 	}

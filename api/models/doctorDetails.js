@@ -6,14 +6,6 @@ const doctorDetailSchema = new Schema({
 		type: String,
 		required: true,
 	},
-	contact: {
-		type: Number,
-		required: true,
-	},
-	contactMail: {
-		type: String,
-		required: true,
-	},
 	experience: {
 		type: Number,
 		required: true,
@@ -90,6 +82,26 @@ const doctorDetailSchema = new Schema({
 	doctorID: {
 		type: String,
 		required: true,
+	},
+	social: {
+		_id: false,
+		contact: {
+			type: String,
+			required: true,
+		},
+		contactMail: {
+			type: String,
+			required: true,
+		},
+		facebook: {
+			type: String,
+		},
+		linkedin: {
+			type: String,
+		},
+		twitter: {
+			type: String,
+		},
 	},
 });
 

@@ -3,8 +3,6 @@ import React, { Fragment, useEffect, useState } from 'react';
 const DoctorForm = ({ onChange }) => {
 	const [info, setInfo] = useState({
 		name: '',
-		contact: '',
-		contactMail: '',
 		experience: '',
 		specialisation: '',
 		fees: '',
@@ -33,26 +31,6 @@ const DoctorForm = ({ onChange }) => {
 				className="text-black"
 			/>
 			<label htmlFor="name">Name</label>
-			<br />
-			<input
-				type="number"
-				name="contact"
-				id="contact"
-				onChange={infoChangeHandler}
-				value={info.contact}
-				className="text-black"
-			/>
-			<label htmlFor="contact">Contact No.</label>
-			<br />
-			<input
-				type="email"
-				name="contactMail"
-				id="contactMail"
-				onChange={infoChangeHandler}
-				value={info.contactMail}
-				className="text-black"
-			/>
-			<label htmlFor="contactMail">Contact Email</label>
 			<br />
 			<input
 				type="number"

@@ -40,12 +40,12 @@ const StyledToggleButtonGroup = withStyles((theme) => ({
 		padding: theme.spacing(0, 1),
 		'&:not(:first-child)': {
 			border: '1px solid',
-			borderColor: '#692B7C',
+			borderColor: '#374151',
 			borderRadius: '50%',
 		},
 		'&:first-child': {
 			border: '1px solid',
-			borderColor: '#692B7C',
+			borderColor: '#374151',
 			borderRadius: '50%',
 		},
 	},
@@ -53,18 +53,20 @@ const StyledToggleButtonGroup = withStyles((theme) => ({
 
 const StyledToggle = withStyles({
 	root: {
-		color: '#692B7C',
+		color: 'white',
 		'&$selected': {
-			color: 'white',
-			background: '#692B7C',
+			color: 'black',
+			background: '#9ca3af',
 		},
 		'&:hover': {
-			borderColor: '#BA9BC3',
-			background: '#BA9BC3',
+			color: 'white',
+			borderColor: '#374151',
+			background: '#374151',
 		},
 		'&:hover$selected': {
-			borderColor: '#BA9BC3',
-			background: '#BA9BC3',
+			color: 'white',
+			borderColor: '#374151',
+			background: '#374151',
 		},
 		minWidth: 32,
 		maxWidth: 32,
@@ -75,8 +77,8 @@ const StyledToggle = withStyles({
 	selected: {},
 })(ToggleButton);
 
-const ToggleDays = ({ onSelect }) => {
-	const [days, setDays] = useState([]);
+const ToggleDays = ({ onSelect, daysArray = [] }) => {
+	const [days, setDays] = useState(daysArray);
 
 	const changeDaysStateinParent = useCallback(
 		(daysArray) => {
