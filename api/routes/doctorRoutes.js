@@ -13,6 +13,7 @@ const {
 	registerDoctorInfo,
 	getDoctorInfo,
 	editDoctorProfile,
+	deleteAcc,
 } = require('../controllers/doctorControllers');
 const multer = require('multer');
 const { storage } = require('../cloudinary');
@@ -45,6 +46,7 @@ router
 	.route('/:id')
 	.post(registerDoctorInfo)
 	.get(getDoctorInfo)
-	.put(editDoctorProfile);
+	.put(editDoctorProfile)
+	.delete(deleteAcc);
 
 module.exports = router;

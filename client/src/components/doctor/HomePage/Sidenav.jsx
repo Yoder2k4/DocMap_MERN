@@ -1,11 +1,36 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+const API_BASE = 'http://localhost:3001';
 
 const Sidenav = ({ changeSection }) => {
+	const navigate = useNavigate();
 	const [section, setSection] = useState(0);
+	const userID = localStorage.getItem('userID');
 
 	useEffect(() => {
 		changeSection(section);
 	}, [section, changeSection]);
+
+	const deleteAcc = async () => {
+		try {
+			const response = await fetch(`${API_BASE}/doctor/${userID}`, {
+				method: 'DELETE',
+			});
+
+			if (response.ok) {
+				localStorage.removeItem('userID');
+				localStorage.removeItem('accID');
+				localStorage.removeItem('isLoggedIn');
+				navigate('/');
+			}
+			else {
+				console.log("Error in response");
+			}
+		} catch {
+			console.log("Some error deleting account");
+		}
+	};
 
 	return (
 		<>
@@ -154,19 +179,19 @@ const Sidenav = ({ changeSection }) => {
 								<span className="ml-3">History</span>
 							</span>
 						</li>
-						<li onClick={() => setSection(5)} className="cursor-pointer">
+						<li onClick={deleteAcc} className="cursor-pointer">
 							<span className="flex items-center p-2 rounded-lg text-white hover:bg-gray-950 group">
 								<svg
-									className="w-5 h-5 transition duration-75 text-gray-400 group-hover:text-gray-300"
+									className="w-5 text-gray-400"
 									aria-hidden="true"
 									xmlns="http://www.w3.org/2000/svg"
 									fill="currentColor"
-									viewBox="0 0 22 21"
+									viewBox="0 0 18 20"
 								>
-									<path d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
-									<path d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z" />
+									<path d="M17 4h-4V2a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v2H1a1 1 0 0 0 0 2h1v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6h1a1 1 0 1 0 0-2ZM7 2h4v2H7V2Zm1 14a1 1 0 1 1-2 0V8a1 1 0 0 1 2 0v8Zm4 0a1 1 0 0 1-2 0V8a1 1 0 0 1 2 0v8Z" />
 								</svg>
-								<span className="ml-3">Dashboard</span>
+
+								<span className="ml-3">Delete Account</span>
 							</span>
 						</li>
 					</ul>

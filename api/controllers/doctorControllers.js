@@ -44,6 +44,19 @@ module.exports.getDoctorInfo = async (req, res) => {
 module.exports.editDoctorProfile = async (req, res) => {
 	const { id } = req.params;
 	const doctor = req.body;
-	const response = await DoctorDetails.findByIdAndUpdate(id, { ...doctor }, { new: true });
+	const response = await DoctorDetails.findByIdAndUpdate(
+		id,
+		{ ...doctor },
+		{ new: true },
+	);
+	res.json(response);
+};
+
+module.exports.deleteAcc = async (req, res) => {
+	const { id } = req.params;
+	const doctor = await DoctorUser.findById(id);
+	const accID = doctor.accID;
+	await DoctorUser.findByIdAndDelete(id);
+	const response = await DoctorDetails.findByIdAndDelete(accID);
 	res.json(response);
 };

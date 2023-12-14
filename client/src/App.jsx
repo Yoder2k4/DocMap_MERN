@@ -13,7 +13,6 @@ import DoctorLogin from './pages/Doctor/DoctorLogin';
 import PatientRegister from './pages/Patient/PatientRegister';
 import PatientLogin from './pages/Patient/PatientLogin';
 import PatientHome from './pages/Patient/PatientHome';
-import DoctorInfo from './pages/Doctor/DoctorInfo';
 import DoctorPage from './pages/Doctor/DoctorPage';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';

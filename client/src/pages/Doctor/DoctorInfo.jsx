@@ -107,13 +107,15 @@ const DoctorInfo = () => {
 			<form encType="multipart/form-data" className="h-[91vh]">
 				<DoctorForm onChange={changeInfoHandler} />
 				<br />
-				<UploadImage imgType='pfpURL' imageInfoChange={pfpChangeHandler} />
+				<UploadImage imgType="pfpURL" imageInfoChange={pfpChangeHandler} />
 				<br />
-				<UploadImage imgType='bgURL' imageInfoChange={bgChangeHandler} />
+				<UploadImage imgType="bgURL" imageInfoChange={bgChangeHandler} />
 				<br />
-				{/* <DoctorEduForm onChange={changeEduInfoHandler} /> */}
-				<Qualifications qualifications={education} onChange={changeEduInfoHandler}/>
-				{/* <br />
+				<Qualifications
+					qualifications={education}
+					onChange={changeEduInfoHandler}
+				/>
+				<br />
 				<div id="addLocation">
 					{clinics.map((clinic, clinicIndex) => (
 						<ClinicForm
@@ -126,7 +128,7 @@ const DoctorInfo = () => {
 						/>
 					))}
 					<button onClick={addLocationBtnHandler}>Add Location</button>
-				</div> */}
+				</div>
 				<button onClick={submitFormHandler}>Submit</button>
 			</form>
 		</Fragment>

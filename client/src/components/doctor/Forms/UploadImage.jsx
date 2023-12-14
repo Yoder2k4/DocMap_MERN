@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 
 const API_BASE = 'http://localhost:3001';
 
-const UploadImage = ({ imgType, imgState,imageInfoChange }) => {
+const UploadImage = ({ imgType, imgState, imageInfoChange }) => {
 	const [selectedFile, setSelectedFile] = useState(null);
 	const [imgData, setImgData] = useState(imgState);
 
@@ -15,7 +15,7 @@ const UploadImage = ({ imgType, imgState,imageInfoChange }) => {
 			alert('Please select a file to upload.');
 			return;
 		}
-
+		setImgData({ url: null, filename: null });
 		const formData = new FormData();
 		formData.append('pfp', selectedFile);
 
@@ -49,7 +49,7 @@ const UploadImage = ({ imgType, imgState,imageInfoChange }) => {
 				className="block mb-2 text-sm font-medium text-white"
 				htmlFor="file_input"
 			>
-				Change {imgType === 'pfpURL' ? 'Profile Picture' : 'Background Image'}
+				Change {imgType === 'pfpInfo' ? 'Profile Picture' : 'Background Image'}
 			</label>
 			<input
 				className="block w-full text-sm border rounded-lg cursor-pointer text-gray-400 focus:outline-none bg-gray-700 border-gray-600 placeholder-gray-400"

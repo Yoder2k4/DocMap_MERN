@@ -4,15 +4,17 @@ import DocDetailContext from '../../../../utils/DocDetailContext';
 
 const DetailPfp = () => {
 	const { doctor } = useContext(DocDetailContext);
-
+	console.log(doctor);
 	return (
 		<div className="bg-gray-800 h-[26rem] w-11/12 mt-5 mb-6 rounded-xl flex flex-col">
-			<div className="h-2/5 bg-green-400 rounded-t-xl overflow-hidden"></div>
+			<div className="h-2/5 bg-green-400 rounded-t-xl overflow-hidden flex justify-center items-center">
+				<img src={doctor.images && doctor.images.bgInfo.url} alt="bgImage" className='w-full'/>
+			</div>
 			<div className="flex flex-grow rounded-b-xl">
 				<span className="w-4/5 flex flex-col">
 					<div className="flex w-full h-1/2">
 						<span className="rounded-full w-40 h-40 bg-red-400 flex justify-center items-center overflow-hidden -translate-y-1/2 mx-5">
-							Image
+							<img src={doctor.images && doctor.images.pfpInfo.url} alt="pfpImage" className='w-full'/>
 						</span>
 						<span className="flex-grow flex flex-col">
 							<span className="text-3xl py-1">{doctor.name}</span>

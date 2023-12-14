@@ -254,8 +254,16 @@ const EditProfile = () => {
 				)}
 				{editMenu === 'images' && (
 					<Fragment>
-						<UploadImage imgType="pfpURL" imageInfoChange={imgChangeHandler} />
-						<UploadImage imgType="bgURL" imageInfoChange={imgChangeHandler} />
+						<UploadImage
+							imgType="pfpInfo"
+							imgState={info.images.pfpInfo}
+							imageInfoChange={imgChangeHandler}
+						/>
+						<UploadImage
+							imgType="bgInfo"
+							imgState={info.images.pfpInfo}
+							imageInfoChange={imgChangeHandler}
+						/>
 					</Fragment>
 				)}
 				{editMenu === 'qualifications' && (
