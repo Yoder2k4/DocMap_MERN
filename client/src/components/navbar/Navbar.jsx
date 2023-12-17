@@ -37,6 +37,7 @@ export default function Navbar(props) {
 	const { userID } = useParams();
 	const routeLocation = useLocation();
 	const [current, setCurrent] = useState({ Doctor: false, Patient: false });
+	const loginStatus = localStorage.getItem('isLoggedIn');
 
 	const changeCurrentHandler = (item) => {
 		setCurrent((prevData) => {
@@ -65,6 +66,14 @@ export default function Navbar(props) {
 			return newData;
 		});
 		navigate(`/`);
+	};
+
+	const backBtnHandler = () => {
+		navigate(-1);
+		if (loginStatus === '2') {
+			localStorage.removeItem('userID');
+			localStorage.removeItem('accID');
+		}
 	};
 
 	let styleClass;
@@ -182,30 +191,42 @@ export default function Navbar(props) {
 								</div>
 
 								<div className="flex items-center justify-start">
-									<span className="pr-4 font-medium">Register</span>
-									<div className="flex bg-gray-700 rounded-md">
-										{navigation.map((item) => (
-											<Link
-												key={item.name}
-												to={item.href}
-												onClick={() => changeCurrentHandler(item.name)}
-												className={classNames(
-													current[item.name]
-														? 'bg-gray-900 text-white'
-														: 'text-gray-300 hover:bg-gray-900 hover:text-white',
-													'rounded-md px-3 py-2 text-sm font-medium flex justify-between',
-												)}
-												aria-current={current[item.name] ? 'page' : undefined}
-											>
-												<FontAwesomeIcon
-													icon={item.icon}
-													size="xl"
-													style={{ color: '#ffffff' }}
-												/>
-												<span className="px-1">{item.name}</span>
-											</Link>
-										))}
-									</div>
+									<span
+										className="mr-8 bg-gray-100 text-gray-900 rounded-full w-10 h-10 flex justify-center items-center hover:bg-gray-800 hover:text-white cursor-pointer transition duration-150"
+										onClick={backBtnHandler}
+									>
+										<FontAwesomeIcon icon="fa-solid fa-arrow-left" />
+									</span>
+									{loginStatus !== '1' && loginStatus !== '2' && (
+										<Fragment>
+											<span className="pr-4 font-medium">Register</span>
+											<div className="flex bg-gray-700 rounded-md">
+												{navigation.map((item) => (
+													<Link
+														key={item.name}
+														to={item.href}
+														onClick={() => changeCurrentHandler(item.name)}
+														className={classNames(
+															current[item.name]
+																? 'bg-gray-900 text-white'
+																: 'text-gray-300 hover:bg-gray-900 hover:text-white',
+															'rounded-md px-3 py-2 text-sm font-medium flex justify-between',
+														)}
+														aria-current={
+															current[item.name] ? 'page' : undefined
+														}
+													>
+														<FontAwesomeIcon
+															icon={item.icon}
+															size="xl"
+															style={{ color: '#ffffff' }}
+														/>
+														<span className="px-1">{item.name}</span>
+													</Link>
+												))}
+											</div>
+										</Fragment>
+									)}
 								</div>
 
 								<div className="flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">

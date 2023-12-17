@@ -4,17 +4,25 @@ import DocDetailContext from '../../../../utils/DocDetailContext';
 
 const DetailPfp = () => {
 	const { doctor } = useContext(DocDetailContext);
-	console.log(doctor);
+	const loginStatus = localStorage.getItem('isLoggedIn');
 	return (
 		<div className="bg-gray-800 h-[26rem] w-11/12 mt-5 mb-6 rounded-xl flex flex-col">
 			<div className="h-2/5 bg-green-400 rounded-t-xl overflow-hidden flex justify-center items-center">
-				<img src={doctor.images && doctor.images.bgInfo.url} alt="bgImage" className='w-full'/>
+				<img
+					src={doctor.images && doctor.images.bgInfo.url}
+					alt="bgImage"
+					className="w-full"
+				/>
 			</div>
 			<div className="flex flex-grow rounded-b-xl">
 				<span className="w-4/5 flex flex-col">
 					<div className="flex w-full h-1/2">
-						<span className="rounded-full w-40 h-40 bg-red-400 flex justify-center items-center overflow-hidden -translate-y-1/2 mx-5">
-							<img src={doctor.images && doctor.images.pfpInfo.url} alt="pfpImage" className='w-full'/>
+						<span className="rounded-full w-40 h-40 flex justify-center items-center overflow-hidden -translate-y-1/2 mx-5">
+							<img
+								src={doctor.images && doctor.images.pfpInfo.url}
+								alt="pfpImage"
+								className="w-full"
+							/>
 						</span>
 						<span className="flex-grow flex flex-col">
 							<span className="text-3xl py-1">{doctor.name}</span>
@@ -96,23 +104,25 @@ const DetailPfp = () => {
 				</span>
 				<span className="flex-grow flex flex-col">
 					<span className="h-1/2 flex justify-center items-center">
-						<button className="flex items-center text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-2.5 py-2.5 text-center">
-							<svg
-								className="w-7 h-7  text-white"
-								aria-hidden="true"
-								xmlns="http://www.w3.org/2000/svg"
-								fill="currentColor"
-								viewBox="0 0 20 20"
-							>
+						{loginStatus === '2' && (
+							<button className="flex items-center text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-2.5 py-2.5 text-center">
 								<svg
+									className="w-7 h-7  text-white"
+									aria-hidden="true"
 									xmlns="http://www.w3.org/2000/svg"
-									viewBox="0 0 100 100"
-									id="schedule"
+									fill="currentColor"
+									viewBox="0 0 20 20"
 								>
-									<path d="M21 14h-4v-3c0-1.1.9-2 2-2s2 .9 2 2v3zm10-3c0-1.1-.9-2-2-2s-2 .9-2 2v3h4v-3zm10 0c0-1.1-.9-2-2-2s-2 .9-2 2v3h4v-3zm10 0c0-1.1-.9-2-2-2s-2 .9-2 2v3h4v-3zm10 0c0-1.1-.9-2-2-2s-2 .9-2 2v3h4v-3zm10 0c0-1.1-.9-2-2-2s-2 .9-2 2v3h4v-3zm6 9c0-1.1-.9-2-2-2h-4v3c0 1.1-.9 2-2 2s-2-.9-2-2v-3h-6v3c0 1.1-.9 2-2 2s-2-.9-2-2v-3h-6v3c0 1.1-.9 2-2 2s-2-.9-2-2v-3h-6v3c0 1.1-.9 2-2 2s-2-.9-2-2v-3h-6v3c0 1.1-.9 2-2 2s-2-.9-2-2v-3h-6v3c0 1.1-.9 2-2 2s-2-.9-2-2v-3h-4c-1.1 0-2 .9-2 2v9h66v-9zM57 77c0 .68.04 1.34.12 2H13c-1.1 0-2-.9-2-2V33h66v26.12c-.66-.08-1.32-.12-2-.12-9.92 0-18 8.08-18 18zm0-26c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V41c0-1.1-.9-2-2-2H59c-1.1 0-2 .9-2 2v10zM31 61c0-1.1-.9-2-2-2H19c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V61zm0-20c0-1.1-.9-2-2-2H19c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V41zm20 20c0-1.1-.9-2-2-2H39c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V61zm0-20c0-1.1-.9-2-2-2H39c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V41zM21 69h6v-6h-6v6zm20 0h6v-6h-6v6zM21 49h6v-6h-6v6zm20 0h6v-6h-6v6zm26-6h-6v6h6v-6zm22 34c0 7.72-6.28 14-14 14s-14-6.28-14-14 6.28-14 14-14 14 6.28 14 14zm-6 0c0-1.1-.9-2-2-2h-4v-4c0-1.1-.9-2-2-2s-2 .9-2 2v6c0 1.1.9 2 2 2h6c1.1 0 2-.9 2-2z"></path>
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										viewBox="0 0 100 100"
+										id="schedule"
+									>
+										<path d="M21 14h-4v-3c0-1.1.9-2 2-2s2 .9 2 2v3zm10-3c0-1.1-.9-2-2-2s-2 .9-2 2v3h4v-3zm10 0c0-1.1-.9-2-2-2s-2 .9-2 2v3h4v-3zm10 0c0-1.1-.9-2-2-2s-2 .9-2 2v3h4v-3zm10 0c0-1.1-.9-2-2-2s-2 .9-2 2v3h4v-3zm10 0c0-1.1-.9-2-2-2s-2 .9-2 2v3h4v-3zm6 9c0-1.1-.9-2-2-2h-4v3c0 1.1-.9 2-2 2s-2-.9-2-2v-3h-6v3c0 1.1-.9 2-2 2s-2-.9-2-2v-3h-6v3c0 1.1-.9 2-2 2s-2-.9-2-2v-3h-6v3c0 1.1-.9 2-2 2s-2-.9-2-2v-3h-6v3c0 1.1-.9 2-2 2s-2-.9-2-2v-3h-6v3c0 1.1-.9 2-2 2s-2-.9-2-2v-3h-4c-1.1 0-2 .9-2 2v9h66v-9zM57 77c0 .68.04 1.34.12 2H13c-1.1 0-2-.9-2-2V33h66v26.12c-.66-.08-1.32-.12-2-.12-9.92 0-18 8.08-18 18zm0-26c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V41c0-1.1-.9-2-2-2H59c-1.1 0-2 .9-2 2v10zM31 61c0-1.1-.9-2-2-2H19c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V61zm0-20c0-1.1-.9-2-2-2H19c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V41zm20 20c0-1.1-.9-2-2-2H39c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V61zm0-20c0-1.1-.9-2-2-2H39c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V41zM21 69h6v-6h-6v6zm20 0h6v-6h-6v6zM21 49h6v-6h-6v6zm20 0h6v-6h-6v6zm26-6h-6v6h6v-6zm22 34c0 7.72-6.28 14-14 14s-14-6.28-14-14 6.28-14 14-14 14 6.28 14 14zm-6 0c0-1.1-.9-2-2-2h-4v-4c0-1.1-.9-2-2-2s-2 .9-2 2v6c0 1.1.9 2 2 2h6c1.1 0 2-.9 2-2z"></path>
+									</svg>
 								</svg>
-							</svg>
-						</button>
+							</button>
+						)}
 					</span>
 				</span>
 			</div>

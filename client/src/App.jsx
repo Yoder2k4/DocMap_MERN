@@ -45,6 +45,26 @@ function App() {
 		localStorage.removeItem('userID');
 	};
 
+	// handling ResizeObserver error (suppressing it)
+	useEffect(() => {
+		window.addEventListener('error', (e) => {
+			if (e.message === 'ResizeObserver loop completed with undelivered notifications.') {
+				const resizeObserverErrDiv = document.getElementById(
+					'webpack-dev-server-client-overlay-div',
+				);
+				const resizeObserverErr = document.getElementById(
+					'webpack-dev-server-client-overlay',
+				);
+				if (resizeObserverErr) {
+					resizeObserverErr.setAttribute('style', 'display: none');
+				}
+				if (resizeObserverErrDiv) {
+					resizeObserverErrDiv.setAttribute('style', 'display: none');
+				}
+			}
+		});
+	}, []); 
+
 	const router = createBrowserRouter(
 		createRoutesFromElements(
 			<Route
