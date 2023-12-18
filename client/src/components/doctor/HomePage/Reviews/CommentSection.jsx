@@ -1,14 +1,49 @@
 import React, { useState } from 'react';
 
-const CommentSection = () => {
+const API_BASE = 'http://localhost:3001';
+
+const CommentSection = ({ reviewPosted }) => {
 	const [starHover, setStarHover] = useState(0);
 	const [starClick, setStarClick] = useState(0);
 	const [message, setMessage] = useState('');
 	const [comment, setComment] = useState('');
+	const patientObj = JSON.parse(localStorage.getItem('patientObj'));
+	const accID = localStorage.getItem('accID');
 
-	const submitHandler = (e) => {
+	const submitHandler = async (e) => {
 		e.preventDefault();
-		console.log(message, comment, starClick);
+		try {
+			const response = await fetch(
+				`${API_BASE}/review/${patientObj.patientID}/${accID}`,
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({
+						rating: starClick,
+						subject: message,
+						reviewBody: comment,
+						username: patientObj.username,
+						email: patientObj.email,
+					}),
+				},
+			);
+
+			if (!response.ok) {
+				console.log('Something in the backend went wrong!!');
+				return;
+			}
+			const data = await response.json();
+			reviewPosted(data._id);
+			console.log(data);
+			setStarClick(0);
+			setStarHover(0);
+			setMessage('');
+			setComment('');
+		} catch {
+			console.log('Some error occured in fetch request!!');
+		}
 	};
 
 	return (
@@ -120,6 +155,7 @@ const CommentSection = () => {
 						className="block mx-4 p-2.5 w-full text-sm rounded-lg border bg-gray-800 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
 						placeholder="Your message..."
 						onChange={(e) => setMessage(e.target.value)}
+						value={message}
 					></textarea>
 				</div>
 			</div>
@@ -135,7 +171,7 @@ const CommentSection = () => {
 						className="w-full px-0 text-sm border-0 bg-gray-800 focus:ring-0 text-white placeholder-gray-400"
 						placeholder="Write a comment..."
 						onChange={(e) => setComment(e.target.value)}
-						required
+						value={comment}
 					></textarea>
 				</div>
 				<div className="flex items-center justify-between px-3 py-2 border-t border-gray-900">

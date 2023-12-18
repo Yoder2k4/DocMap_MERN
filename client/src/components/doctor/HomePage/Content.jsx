@@ -4,14 +4,14 @@ import SideProfile from './SideProfile/SideProfile';
 import Reviews from './Reviews/Reviews';
 import Appointments from './Appointments/Appointments';
 import EditProfile from './EditProfile/EditProfile';
-import History from './History/History';
+import BookAppointment from './BookAppointment/BookAppointment';
 
 const sections = [
 	<Profile />,
 	<Reviews />,
 	<Appointments />,
 	<EditProfile />,
-	<History />,
+	<BookAppointment />,
 ];
 
 const Content = ({ section }) => {

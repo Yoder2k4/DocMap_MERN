@@ -8,6 +8,8 @@ const session = require('express-session');
 const cors = require('cors');
 const doctorRoutes = require('./routes/doctorRoutes');
 const patientRoutes = require('./routes/patientRoutes');
+const reviewRoutes = require('./routes/reviewRoutes');
+const appointmentRoutes = require('./routes/appointmentRoutes');
 
 // ==================================================================================================================
 
@@ -79,6 +81,10 @@ app.use('/patient', patientRoutes);
 
 // ---------------------------------------------------- DOCTOR -------------------------------------------------------
 app.use('/doctor', doctorRoutes);
+
+app.use('/review', reviewRoutes);
+
+app.use('/appointment', appointmentRoutes);
 
 //
 

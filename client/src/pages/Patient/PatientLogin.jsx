@@ -26,6 +26,12 @@ const PatientLogin = (props) => {
 				const userID = user._id;
 				props.onLogin('patient');
 				navigate(`/patient/${userID}`);
+				const patientObj = {
+					email: data.email,
+					username: user.username,
+					patientID: userID,
+				}
+				localStorage.setItem('patientObj', JSON.stringify(patientObj));
 				console.log('Data submitted successfully');
 			} else {
 				console.error('Error submitting data');

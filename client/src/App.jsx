@@ -43,12 +43,16 @@ function App() {
 		localStorage.removeItem('isLoggedIn');
 		localStorage.removeItem('accID');
 		localStorage.removeItem('userID');
+		localStorage.removeItem('patientObj');
 	};
 
 	// handling ResizeObserver error (suppressing it)
 	useEffect(() => {
 		window.addEventListener('error', (e) => {
-			if (e.message === 'ResizeObserver loop completed with undelivered notifications.') {
+			if (
+				e.message ===
+				'ResizeObserver loop completed with undelivered notifications.'
+			) {
 				const resizeObserverErrDiv = document.getElementById(
 					'webpack-dev-server-client-overlay-div',
 				);
@@ -63,7 +67,7 @@ function App() {
 				}
 			}
 		});
-	}, []); 
+	}, []);
 
 	const router = createBrowserRouter(
 		createRoutesFromElements(

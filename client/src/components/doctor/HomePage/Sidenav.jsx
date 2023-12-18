@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const API_BASE = 'http://localhost:3001';
 
@@ -177,30 +178,6 @@ const Sidenav = ({ changeSection }) => {
 										<span className="ml-3">Edit Profile</span>
 									</span>
 								</li>
-								<li onClick={() => setSection(4)} className="cursor-pointer">
-									<span
-										className={`flex items-center p-2 rounded-lg text-white group ${
-											section === 4 ? 'bg-gray-950' : 'hover:bg-gray-900'
-										}`}
-									>
-										<svg
-											className="w-5 h-5 transition duration-75 text-gray-400 group-hover:text-gray-300"
-											aria-hidden="true"
-											xmlns="http://www.w3.org/2000/svg"
-											fill="currentColor"
-											viewBox="0 0 22 21"
-										>
-											<svg
-												xmlns="http://www.w3.org/2000/svg"
-												viewBox="0 0 512 512"
-												id="history"
-											>
-												<path d="M256 0C114.615 0 0 114.615 0 256s114.615 256 256 256 256-114.615 256-256S397.385 0 256 0zm110.364 366.309c-60.922 60.921-159.695 60.921-220.617 0-30.342-30.342-45.572-70.073-45.691-109.841-.04-13.453 10.696-24.72 24.149-24.841 13.565-.123 24.601 10.837 24.601 24.374h.05c0 27.464 10.454 54.929 31.363 75.837 41.817 41.817 109.857 41.817 151.674 0 41.986-41.985 41.986-109.69 0-151.675-41.817-41.817-109.857-41.816-151.674 0 7.367 7.367 3.551 19.973-6.666 22.016l-43.089 8.618c-9.128 1.826-17.176-6.222-15.35-15.35l8.618-43.089c2.043-10.217 14.649-14.033 22.016-6.666 60.922-60.922 159.695-60.922 220.617 0 60.772 60.771 60.772 159.845-.001 220.617zm-61.104-103.01c8.744 5.048 11.74 16.229 6.691 24.973-5.048 8.744-16.229 11.74-24.973 6.691l-40.064-23.131.001-.002c-5.463-3.161-9.142-9.064-9.142-15.83v-64.543c0-10.096 8.185-18.281 18.281-18.281 10.096 0 18.281 8.185 18.281 18.281v53.989l30.925 17.853z"></path>
-											</svg>
-										</svg>
-										<span className="ml-3">History</span>
-									</span>
-								</li>
 								<li onClick={deleteAcc} className="cursor-pointer">
 									<span className="flex items-center p-2 rounded-lg text-white hover:bg-gray-950 group">
 										<svg
@@ -217,6 +194,23 @@ const Sidenav = ({ changeSection }) => {
 									</span>
 								</li>
 							</Fragment>
+						)}
+						{loginStatus === '2' && (
+							<li onClick={() => setSection(4)} className="cursor-pointer">
+								<span
+									className={`flex items-center p-2 rounded-lg text-white group ${
+										section === 4
+											? 'bg-red-700'
+											: 'hover:bg-red-800 bg-red-900'
+									}`}
+								>
+									<FontAwesomeIcon
+										icon="fa-solid fa-calendar-check"
+										size="lg"
+									/>
+									<span className="ml-3">Book Appointment</span>
+								</span>
+							</li>
 						)}
 					</ul>
 				</div>

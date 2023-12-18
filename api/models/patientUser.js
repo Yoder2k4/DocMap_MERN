@@ -8,6 +8,10 @@ const patientUserSchema = new Schema({
 		required: true,
 		unique: true,
 	},
+	username: {
+		type: String,
+		required: true,
+	},
 });
 
 patientUserSchema.plugin(passportLocalMongoose, { usernameField: 'email' });

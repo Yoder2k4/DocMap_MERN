@@ -7,12 +7,12 @@ const PatientRegister = (props) => {
 	const navigate = useNavigate();
 	const [data, setData] = useState({
 		email: '',
+		username: '',
 		password: '',
 	});
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-
 		try {
 			const response = await fetch(API_BASE + '/patient/register', {
 				method: 'POST',
@@ -27,6 +27,12 @@ const PatientRegister = (props) => {
 				const userID = user._id;
 				props.onLogin('patient');
 				navigate(`/patient/${userID}`);
+				const patientObj = {
+					email: data.email,
+					username: user.username,
+					patientID: userID,
+				};
+				localStorage.setItem('patientObj', JSON.stringify(patientObj));
 				console.log('Data submitted successfully');
 			} else {
 				console.error('Error submitting data');
@@ -53,9 +59,20 @@ const PatientRegister = (props) => {
 					id="email"
 					onChange={handleChange}
 					value={data.email}
-					className='text-black'
+					className="text-black"
 				/>
 				<label htmlFor="email">Email</label>
+				<br />
+				<br />
+				<input
+					type="text"
+					name="username"
+					id="username"
+					onChange={handleChange}
+					value={data.username}
+					className="text-black"
+				/>
+				<label htmlFor="username">Name</label>
 				<br />
 				<br />
 				<input
@@ -64,7 +81,7 @@ const PatientRegister = (props) => {
 					id="password"
 					onChange={handleChange}
 					value={data.password}
-					className='text-black'
+					className="text-black"
 				/>
 				<label htmlFor="password">Password</label>
 				<br />

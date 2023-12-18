@@ -2,8 +2,8 @@ const PatientUser = require('../models/patientUser');
 const DoctorDetails = require('../models/doctorDetails');
 
 module.exports.registerPatient = async (req, res) => {
-	const { email, password } = req.body;
-	const user = new PatientUser({ email });
+	const { email, username, password } = req.body;
+	const user = new PatientUser({ email, username });
 	const registeredUser = await PatientUser.register(user, password);
 	req.login(registeredUser, (err) => {
 		if (err) {
